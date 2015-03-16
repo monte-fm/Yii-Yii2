@@ -8,9 +8,9 @@ RUN apt-get install -y php5 php5-fpm php5-cli php5-common php5-intl php5-json ph
 
 #php
 RUN sudo rm /etc/php5/fpm/php.ini
-RUN sudo cp configs/php.ini /etc/php5/fpm/php.ini
-RUN sudo cp configs/20-xdebug.ini /etc/php5/fpm/conf.d/
-RUN sudo cp configs/www.conf /etc/php5/fpm/pool.d/www.conf
+RUN sudo cp /configs/php.ini /etc/php5/fpm/php.ini
+RUN sudo cp /configs/20-xdebug.ini /etc/php5/fpm/conf.d/
+RUN sudo cp /configs/www.conf /etc/php5/fpm/pool.d/www.conf
 
 #MySQL
 RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
@@ -18,7 +18,7 @@ RUN echo "mysql-server mysql-server/root_password_again password root" | debconf
 RUN sudo apt-get  install -y mysql-server mysql-client
 
 #nginx
-RUN sudo cp configs/website /etc/nginx/sites-available/website
+RUN sudo cp /configs/website /etc/nginx/sites-available/website
 RUN ln -s /etc/nginx/sites-available/website /etc/nginx/sites-enabled/website
 RUN sudo rm /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
 
@@ -33,9 +33,9 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 #configs bash start
-RUN sudo cp configs/autorun.sh /root/autostart.sh
+RUN sudo cp /configs/autorun.sh /root/autostart.sh
 RUN chmod +x /root/autostart.sh
-RUN sudo cp configs/bash.bashrc /etc/bash.bashrc
+RUN sudo cp /configs/bash.bashrc /etc/bash.bashrc
 
 #composer
 RUN cd ~
