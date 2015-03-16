@@ -35,8 +35,12 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 #configs bash start
 RUN sudo cp configs/autorun.sh /root/autostart.sh
 RUN chmod +x /root/autostart.sh
+RUN sudo cp configs/bash.bashrc /etc/bash.bashrc
 
 #composer
 RUN cd ~
 RUN curl -sS https://getcomposer.org/installer | php
 RUN sudo mv composer.phar /usr/bin/composer
+
+
+ 
