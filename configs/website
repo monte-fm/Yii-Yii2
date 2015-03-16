@@ -1,0 +1,31 @@
+server {
+    access_log  /var/log/nginx/website_access.log;
+    error_log   /var/log/nginx/website_error.log;
+#edit server name
+    server_name my.website.com;
+    client_max_body_size 100m;
+    sendfile off;
+
+#edit path to repository
+    root   /var/www/myrepo;
+    set $yii_bootstrap "index.php";
+    charset utf-8;
+    location / { index  index.html $yii_bootstrap;
+        try_files $uri $uri/ /$yii_bootstrap?$args;}
+
+    location ~ ^/(protected|framework|themes/\w+/views) {deny  all;}
+    location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {try_files $uri =404;}
+    location ~ \.php {
+        fastcgi_split_path_info  ^(.+\.php)(.*)$;
+        set $fsn /$yii_bootstrap;
+        if (-f $document_root$fastcgi_script_name){set $fsn $fastcgi_script_name;}
+
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+        include fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fsn;
+        fastcgi_param  PATH_INFO        $fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED  $document_root$fsn;
+    }
+
+    location ~ /\. { deny all; access_log off; log_not_found off;}
+}
