@@ -25,6 +25,7 @@ RUN sudo rm /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
 # SSH service
 RUN sudo apt-get install -y openssh-server openssh-client
 RUN sudo mkdir /var/run/sshd
+#chanche 'passwd' to your secret password
 RUN echo 'root:passwd' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 # SSH login fix. Otherwise user is kicked off after login
