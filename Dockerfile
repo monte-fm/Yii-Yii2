@@ -38,7 +38,7 @@ RUN chmod +x /root/autostart.sh
 COPY configs/bash.bashrc /etc/bash.bashrc
 
 #composer
-RUN cd /usr/bin/composer
+RUN cd /usr/bin
 RUN curl -sS https://getcomposer.org/installer | php
 
 
