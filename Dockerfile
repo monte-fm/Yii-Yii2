@@ -33,7 +33,7 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 #configs bash start
-COPY configs/autorun.sh /root/autostart.sh
+COPY configs/autostart.sh /root/autostart.sh
 RUN chmod +x /root/autostart.sh
 COPY configs/bash.bashrc /etc/bash.bashrc
 
