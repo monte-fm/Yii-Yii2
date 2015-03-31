@@ -41,6 +41,7 @@ COPY configs/bash.bashrc /etc/bash.bashrc
 #composer
 RUN cd /usr/bin
 RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar composer
 
 
  
