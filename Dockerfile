@@ -10,7 +10,6 @@ RUN apt-get install -y php5 php5-fpm php5-cli php5-common php5-intl php5-json ph
 RUN sudo rm /etc/php5/fpm/php.ini
 COPY configs/php.ini /etc/php5/fpm/php.ini
 COPY configs/20-xdebug.ini /etc/php5/fpm/conf.d/
-COPY configs/www.conf /etc/php5/fpm/pool.d/www.conf
 
 #MySQL
 RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
