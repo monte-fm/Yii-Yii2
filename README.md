@@ -1,6 +1,3 @@
-# Yii-Yii2
-Dockerfile for PHP Yii-Yii2 Framework
-
 #Create container
 ```
 docker run -i -t -d -p 80:80 -p 22:22 cristo/yii /bin/bash
