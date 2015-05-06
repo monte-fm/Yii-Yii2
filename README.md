@@ -14,7 +14,7 @@ password: root
 #SSH
 ```
 ssh -p22 root@localhost
-password: root
+password: passwd
 ```
 #NGINX server config file for communicate with docker
 
