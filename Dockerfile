@@ -42,5 +42,6 @@ RUN cd /usr/bin
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar composer
 
-
+#Add colorful command line
+RUN echo "force_color_prompt=yes" >> .bashrc
  
