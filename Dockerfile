@@ -1,9 +1,10 @@
-FROM      ubuntu
+FROM      ubuntu:14.04.4
 MAINTAINER Olexander Kutsenko <olexander.kutsenko@gmail.com>
 
 #install
-RUN apt-get update -y
-RUN apt-get install git git-core vim nano mc nginx screen curl unzip -y
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y git git-core vim nano mc nginx screen curl zip tmux unzip
 RUN apt-get install -y php5 php5-fpm php5-cli php5-common php5-intl php5-json php5-mysql php5-gd php5-imagick php5-curl php5-mcrypt php5-dev php5-xdebug
 
 #php
@@ -45,3 +46,10 @@ RUN mv composer.phar composer
 #Add colorful command line
 RUN echo "force_color_prompt=yes" >> .bashrc
 RUN echo "export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'" >> .bashrc
+
+#Install locale
+RUN locale-gen en_US.UTF-8
+RUN dpkg-reconfigure locales
+
+#open ports
+EXPOSE 80 22 9000
