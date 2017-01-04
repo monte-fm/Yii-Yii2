@@ -27,7 +27,7 @@ server {
 
                 location / {
                                 proxy_set_header Host $host;
-                                proxy_set_header X-Real_IP $remote_addr;
+                                proxy_set_header X-Real-IP $remote_addr;
                                 proxy_cache off;
                                 proxy_pass http://localhost:80;
                         }
